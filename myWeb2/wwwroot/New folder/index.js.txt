@@ -1,0 +1,48 @@
+(function myWeb2() {
+    var button1;
+    var button2;
+
+    function toggleHeadFootColor() {
+        var header1;
+        var footer1;
+
+        header1 = document.getElementById("header1");
+
+        if (header1.classList.contains("my-headfoot-one")) {
+            header1.classList.remove("my-headfoot-one");
+            header1.classList.add("my-headfoot-two");
+        } else {
+            header1.classList.remove("my-headfoot-two");
+            header1.classList.add("my-headfoot-one");
+        }
+
+        footer1 = document.getElementById("footer1");
+
+        if (footer1.classList.contains("my-headfoot-one")) {
+            footer1.classList.remove("my-headfoot-one");
+            footer1.classList.add("my-headfoot-two");
+        } else {
+            footer1.classList.remove("my-headfoot-two");
+            footer1.classList.add("my-headfoot-one");
+        }
+    }
+
+    function toggleTableVisibility() {
+        var table1 = document.getElementById("table1");
+
+        if (table1.classList.contains("my-table-hidden")) {
+            table1.classList.remove("my-table-hidden");
+            table1.classList.add("my-table-visible");
+        } else {
+            table1.classList.remove("my-table-visible");
+            table1.classList.add("my-table-hidden");
+        }
+    }
+
+    button1 = document.getElementById("button1");
+    button1.addEventListener("click", toggleHeadFootColor);
+
+    button2 = document.getElementById("button2");
+    button2.addEventListener("click", toggleTableVisibility);
+
+}());

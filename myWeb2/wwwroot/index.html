@@ -1,0 +1,241 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>My Webpage</title>
+
+    <!-- Bootstrap's stylesheet -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+
+    <!-- My stylesheet -->
+    <link href="index.css" rel="stylesheet">
+</head>
+
+<body>
+
+    <nav class="navbar navbar-expand navbar-dark my-bg-dark">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">
+                <!-- Company name goes here -->
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarsExample02">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarsExample02">
+                <ul class="navbar-nav me-auto">
+                    <li class="nav-item">
+                        <button id="linkNavEmployees" class="btn btn-secondary">Employees</button>
+                    </li>
+                    <li class="nav-item">
+                        <button id="linkNavDepartments" class="btn btn-secondary">Departments</button>
+                    </li>
+                </ul>
+                <form class="d-flex">
+                    <input class="form-control me-2" type="search" placeholder="Search">
+                    <button class="btn btn-secondary" type="submit">Search</button>
+                </form>
+            </div>
+        </div>
+    </nav>
+
+
+    <div class="container">
+
+        <!-- Employees Page -->
+        <div id="pageEmployees">
+
+            <!-- First row -->
+            <div class="row my-row">
+
+                <!-- Left/middle content (employee table)-->
+                <div class="col col-9 my-main">
+                    <div id="dynamic">
+                        <!-- Dynamic content will be injected here -->
+                    </div>
+                </div>
+
+                <!-- Right content (buttons) -->
+                <div class="col col-3 my-right">
+                    <div class="row">
+                        <div class="col col-12">
+                            <button id="buttonToggleColors" type="button" class="btn btn-secondary">Toggle
+                                Colors</button>
+                        </div>
+                    </div>
+                    <div class="my-spacer"></div>
+                    <div class="row">
+                        <div class="col col-12">
+                            <button id="buttonToggleTable" type="button" class="btn btn-secondary">Toggle Table</button>
+                        </div>
+                    </div>
+                    <div class="my-spacer"></div>
+                    <div class="row">
+                        <div class="col col-12">
+                            <button id="buttonGetEmployees" type="button" class="btn btn-secondary">Get
+                                Employees</button>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- Second row -->
+            <div class="row my-row">
+
+                <!-- Left content (insert employee form) -->
+                <div class="col col-4">
+                    <form>
+                        <div>
+                            <label for="firstName1" class="form-label">First Name</label>
+                            <input type="text" id="firstName1" class="form-control">
+                        </div>
+                        <div>
+                            <label for="lastName1" class="form-label">Last Name</label>
+                            <input type="text" id="lastName1" class="form-control">
+                        </div>
+                        <div>
+                            <label for="salary1" class="form-label">Salary</label>
+                            <input type="text" id="salary1" class="form-control">
+                        </div>
+
+                        <label for="department1" class="form-label">Department</label>
+                        <select id="department1" class="form-select">
+                            <!-- Dynamic content will be injected here -->
+                        </select>
+
+                        <button type="submit" id="buttonInsertEmployee" class="btn btn-secondary my-form-button">Insert
+                            Employee</button>
+                    </form>
+                </div>
+
+                <!-- Middle content (update employee form) -->
+                <div class="col col-4">
+                    <form>
+                        <div>
+                            <label for="employeeId2" class="form-label">Employee Id</label>
+                            <input type="text" id="employeeId2" disabled class="form-control">
+                        </div>
+                        <div>
+                            <label for="firstName2" class="form-label">First Name</label>
+                            <input type="text" id="firstName2" class="form-control">
+                        </div>
+                        <div>
+                            <label for="lastName2" class="form-label">Last Name</label>
+                            <input type="text" id="lastName2" class="form-control">
+                        </div>
+                        <div>
+                            <label for="salary2" class="form-label">Salary</label>
+                            <input type="text" id="salary2" class="form-control">
+                        </div>
+
+                        <label for="department2" class="form-label">Department</label>
+                        <select id="department2" class="form-select">
+                            <!-- Dynamic content will be injected here -->
+                        </select>
+
+                        <button type="submit" id="buttonUpdateEmployee" class="btn btn-secondary my-form-button">Update
+                            Employee</button>
+                    </form>
+                </div>
+
+                <!-- Right content -->
+                <div class="col col-4">
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- Departments Page -->
+        <div id="pageDepartments" class="my-page-hidden">
+
+            <!-- Third row -->
+            <div class="row my-row">
+
+                <!-- Left/middle content (department table)-->
+                <div class="col col-9 my-main">
+                    <div id="dynamic2">
+                        <!-- Dynamic content will be injected here -->
+                    </div>
+                </div>
+
+                <!-- Right content (buttons) -->
+                <div class="col col-3 my-right">
+                    <div class="my-spacer"></div>
+                    <div class="row">
+                        <div class="col col-12">
+                            <button id="buttonGetDepartments" type="button" class="btn btn-secondary">Get
+                                Departments</button>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- Fourth row -->
+            <div class="row my-row">
+
+                <!-- Left content (insert department form) -->
+                <div class="col col-4">
+                    <form>
+                        <div>
+                            <label for="departmentName1" class="form-label">Department Name</label>
+                            <input type="text" id="departmentName1" class="form-control">
+                        </div>
+
+                        <button type="submit" id="buttonInsertDepartment"
+                            class="btn btn-secondary my-form-button">Insert
+                            Department</button>
+                    </form>
+                </div>
+
+                <!-- Middle content (update department form) -->
+                <div class="col col-4">
+                    <form>
+                        <div>
+                            <label for="departmentId2" class="form-label">Department Id</label>
+                            <input type="text" id="departmentId2" disabled class="form-control">
+                        </div>
+                        <div>
+                            <label for="departmentName2" class="form-label">Department Name</label>
+                            <input type="text" id="departmentName2" class="form-control">
+                        </div>
+
+                        <button type="submit" id="buttonUpdateDepartment"
+                            class="btn btn-secondary my-form-button">Update
+                            Department</button>
+                    </form>
+                </div>
+
+                <!-- Right content -->
+                <div class="col col-4">
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- Footer -->
+        <!-- <div id="footer1" class="row my-headfoot-one">
+            <div class="col col-12">
+                Footer
+            </div>
+        </div> -->
+
+    </div>
+
+    <!-- Bootstrap's JavaScript -->
+    <!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+        crossorigin="anonymous"></script> -->
+
+    <!-- My JavaScript -->
+    <script src="index.js"></script>
+
+</body>
+
+</html>

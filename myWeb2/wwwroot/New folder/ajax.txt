@@ -1,0 +1,19 @@
+    function callAPI() {
+
+        var xhr = new XMLHttpRequest();
+
+        xhr.onreadystatechange = function () {
+            if (xhr.readyState === 4) { //done
+                if (xhr.status === 200) { //ok
+                    alert(xhr.responseText);
+                } else {
+                    alert(xhr.responseText);
+                }
+            }
+        };
+
+        xhr.open('GET', 'https://localhost:5001/employees', true);
+        //xhr.setRequestHeader("Content-Type", "application/json");
+        xhr.send();
+
+    }

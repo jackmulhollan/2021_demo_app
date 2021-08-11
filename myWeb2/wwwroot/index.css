@@ -1,0 +1,68 @@
+/* Color palette reference */
+.bg-light-blue { background-color: #C3B7F1 }
+.bg-med-blue { background-color: #7862C9 }
+.bg-dark-blue { background-color: #4329A1 }
+.bg-light-yellow { background-color: #FFF2BA }
+.bg-med-yellow { background-color: #FFE46B }
+.bg-dark-yellow { background-color: #E9C525 }
+.bg-gray-70 {background-color: #B3B3B3 }
+.bg-gray-80 {background-color: #CCCCCC }
+.bg-gray-90 {background-color: #E5E5E5 }
+
+    body {
+        background-color: #C3B7F1;
+    }
+
+    #header1 {
+        margin-top: 40px;
+    }
+
+    .my-headfoot-one {
+        background-color: #4329A1;
+        text-align: center;
+        color: #E5E5E5;
+    }
+
+    .my-bg-dark {
+        background-color: #4329A1;
+    }
+
+    .my-headfoot-two {
+        background-color: #E9C525;
+        text-align: center;
+        color: black;
+    }
+
+    .my-main {
+        background-color: white;
+        padding: 20px;
+        min-height: 188px;
+    }
+
+    .my-right {
+        background-color: #7862C9;
+        text-align: center;
+        padding-top: 20px;
+    }
+
+    .my-spacer {
+        height: 12px;
+    }
+
+    .my-table-visible {
+        display: table;
+    }
+
+    .my-page-hidden,
+    .my-table-hidden,
+    .my-field-hidden {
+        display: none;
+    }
+
+    .my-row {
+        padding: 20px;
+    }
+
+    .my-form-button {
+        margin-top: 20px;
+    }
