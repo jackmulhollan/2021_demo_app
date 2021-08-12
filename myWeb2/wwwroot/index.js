@@ -62,7 +62,7 @@
 
     function toggleHeadFootColor() {
 
-        var header1 = document.getElementById("header1");
+        var header1 = document.getElementById("my-navbar");
 
         if (header1.classList.contains("my-headfoot-one")) {
             header1.classList.remove("my-headfoot-one");
@@ -72,15 +72,6 @@
             header1.classList.add("my-headfoot-one");
         }
 
-        var footer1 = document.getElementById("footer1");
-
-        if (footer1.classList.contains("my-headfoot-one")) {
-            footer1.classList.remove("my-headfoot-one");
-            footer1.classList.add("my-headfoot-two");
-        } else {
-            footer1.classList.remove("my-headfoot-two");
-            footer1.classList.add("my-headfoot-one");
-        }
     }
 
     function toggleTableVisibility() {
