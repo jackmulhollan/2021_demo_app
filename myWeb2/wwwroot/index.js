@@ -1,62 +1,53 @@
 (function myWeb2() {
 
-
-
-    function navToEmployees() {
+    function showPageEmployees() {
         document.getElementById("pageDepartments").classList.add("my-page-hidden");
-        //document.getElementById("linkNavDepartments").classList.remove("active");
+        document.getElementById("linkNavDepartments").classList.remove("active");
 
         document.getElementById("pageEmployees").classList.remove("my-page-hidden");
-        //document.getElementById("linkNavEmployees").classList.add("active");
-
-        history.pushState(null, "", "01.html?tab=1");
+        document.getElementById("linkNavEmployees").classList.add("active");
     }
 
-    function navToDepartments() {
+    function showPageDepartments() {
         document.getElementById("pageEmployees").classList.add("my-page-hidden");
-        //document.getElementById("linkNavEmployees").classList.remove("active");
+        document.getElementById("linkNavEmployees").classList.remove("active");
 
         document.getElementById("pageDepartments").classList.remove("my-page-hidden");
-        //document.getElementById("linkNavDepartments").classList.add("active");
-
-        history.pushState(null, "", "01.html?tab=2");
+        document.getElementById("linkNavDepartments").classList.add("active");
     }
 
-    function getQueries() {
+    function handleNavToEmployees(e) {
+        showPageEmployees();
+        window.history.pushState(null, "", "/employees");
+        e.preventDefault();
+    }
+
+    function handleNavToDepartments(e) {
+        showPageDepartments();
+        window.history.pushState(null, "", "/departments");
+        e.preventDefault();
+    }
+
+    function showCorrectPage() {
         var url = window.location.href;
-        var queryString = url.split("?")[1];
-        var queries = {};
+        var page = url.split('/')[3];
 
-        if (queryString != null) {
-            var keyValuePairs = queryString.split("&");
+        if (page != null) {
 
-            keyValuePairs.forEach(function (keyValuePair) {
-                var key = keyValuePair.split("=")[0];
-                var value = keyValuePair.split("=")[1];
-                queries[key] = value;
-            });
-        }
-        return queries;
-    }
-
-    function activateCorrectTab() {
-        var queries = getQueries();
-        var tab = queries["tab"];
-
-        if (tab != null) {
-
-            if (tab === "1") {
-                navToEmployees();
+            if (page === "employees") {
+                showPageEmployees();
+                //window.history.replaceState(null, "", "/employees");
             }
 
-            if (tab === "2") {
-                navToDepartments();
+            if (page === "departments") {
+                showPageDepartments();
+                //window.history.replaceState(null, "", "/departments");
             }
 
         }
         else {
             navToEmployees();
-            window.history.replaceState(null, "", "01.html?tab=1");
+            window.history.replaceState(null, "", "/employees");
         }
     }
 
@@ -611,11 +602,11 @@
 
     // User clicked browser back/forward button
     window.addEventListener("popstate", function (event) {
-        activateCorrectTab();
+        showCorrectPage();
     });
 
-    document.getElementById("linkNavEmployees").addEventListener("click", navToEmployees);
-    document.getElementById("linkNavDepartments").addEventListener("click", navToDepartments);
+    document.getElementById("linkNavEmployees").addEventListener("click", handleNavToEmployees);
+    document.getElementById("linkNavDepartments").addEventListener("click", handleNavToDepartments);
 
     document.getElementById("buttonToggleColors").addEventListener("click", toggleHeadFootColor);
     document.getElementById("buttonToggleTable").addEventListener("click", toggleTableVisibility);
@@ -630,6 +621,6 @@
 
     getEmployees();
     getDepartments();
-    activateCorrectTab();
+    showCorrectPage();
 
 }());
