@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Rewrite;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -27,6 +28,15 @@ namespace myWeb2
             }
 
             app.UseRouting();
+
+            //Added by jackmu
+            var options = new RewriteOptions()
+                .AddRewrite(@"employees", "index.html",
+                    skipRemainingRules: true)
+                .AddRewrite(@"departments", "index.html",
+                    skipRemainingRules: true);
+
+            app.UseRewriter(options);
 
 
             //jackmu
