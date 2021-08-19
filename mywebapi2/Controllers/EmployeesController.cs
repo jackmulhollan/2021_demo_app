@@ -142,5 +142,34 @@ namespace mywebapi2.Controllers
             return response;
         }
 
+        // Search
+        [HttpGet]
+        [Route("/Employees/SearchEmployees")]
+        public Response SearchEmployees(int pageSize, int pageNumber, string search)
+        {
+            Response response = new Response();
+            List<Employee> employees = new List<Employee>();
+
+            try
+            {
+                using (SqlConnection con = new SqlConnection(connectionString))
+                {
+                    con.Open();
+                    employees = Employee.SearchEmployees(con, pageSize, pageNumber, search);
+                }
+
+                response.result = "success";
+                response.message = $"{employees.Count()} rows selected.";
+                response.employees = employees;
+            }
+            catch (Exception ex)
+            {
+                response.result = "failure";
+                response.message = ex.Message;
+            }
+
+            return response;
+        }
+
     }
 }

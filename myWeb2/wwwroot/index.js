@@ -32,7 +32,7 @@
         var url = window.location.href;
         var page = url.split('/')[3];
 
-        if (page != null) {
+        if (page != null && page != "") {
 
             if (page === "employees") {
                 showPageEmployees();
@@ -46,7 +46,7 @@
 
         }
         else {
-            navToEmployees();
+            showPageEmployees();
             window.history.replaceState(null, "", "/employees");
         }
     }
@@ -598,6 +598,44 @@
         }
     }
 
+    //Search
+    function handleSearch() {
+        var pageSize = 20;
+        var pageNumber = 1;
+        var search = textSearch.value;
+
+        var baseURL = "https://localhost:5001/Employees/SearchEmployees?pageSize=" + pageSize + "&pageNumber=" + pageNumber + "&search=" + search;
+        var queryString = "";
+
+        var xhr = new XMLHttpRequest();
+
+        xhr.onreadystatechange = doAfterSearchEmployees;
+
+        xhr.open("GET", baseURL + queryString, true);
+        xhr.send();
+
+        function doAfterSearchEmployees() {
+
+            if (xhr.readyState === 4) { //done
+                if (xhr.status === 200) { //ok
+                    //alert(xhr.responseText);
+
+                    var response = JSON.parse(xhr.responseText);
+
+                    if (response.result === "success") {
+                        var employees = response.employees;
+                        refreshEmployeeTable(employees);
+                    } else {
+                        alert("API Error: " + response.message);
+                    }
+
+                } else {
+                    alert("Server Error: " + xhr.statusText);
+                }
+            }
+        }
+    }
+
     //Page Load
 
     // User clicked browser back/forward button
@@ -607,6 +645,9 @@
 
     document.getElementById("linkNavEmployees").addEventListener("click", handleNavToEmployees);
     document.getElementById("linkNavDepartments").addEventListener("click", handleNavToDepartments);
+
+    var textSearch = document.getElementById("textSearch");
+    textSearch.addEventListener("input", handleSearch);
 
     document.getElementById("buttonToggleColors").addEventListener("click", toggleHeadFootColor);
     document.getElementById("buttonToggleTable").addEventListener("click", toggleTableVisibility);
@@ -618,6 +659,7 @@
     document.getElementById("buttonGetDepartments").addEventListener("click", getDepartments);
     document.getElementById("buttonInsertDepartment").addEventListener("click", insertDepartment);
     document.getElementById("buttonUpdateDepartment").addEventListener("click", updateDepartment);
+
 
     getEmployees();
     getDepartments();

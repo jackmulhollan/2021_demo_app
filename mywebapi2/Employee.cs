@@ -102,5 +102,38 @@ namespace mywebapi2
             return rowsDeleted;
         }
 
+        // Search
+        public static List<Employee> SearchEmployees(SqlConnection con, int pageSize, int pageNumber, string search)
+        {
+            List<Employee> employees = new List<Employee>();
+
+            SqlCommand cmd = new SqlCommand("with pg as (select EmployeeID, count(*) over () AS [Count] from Employee where (FirstName like @Search + '%' OR LastName like @Search + '%') order by EmployeeId offset @PageSize * (@PageNumber - 1) rows fetch next @PageSize rows only) select pg.EmployeeID, e.FirstName, e.LastName, e.Salary, e.DepartmentId, d.DepartmentName, pg.[Count] from pg join Employee e on pg.EmployeeId = e.EmployeeId left outer join Department d on e.DepartmentId = d.DepartmentId order by 1", con);
+            cmd.CommandType = System.Data.CommandType.Text;
+
+            cmd.Parameters.Add("@PageSize", SqlDbType.Int);
+            cmd.Parameters.Add("@PageNumber", SqlDbType.Int);
+            cmd.Parameters.Add("@Search", SqlDbType.VarChar);
+
+            cmd.Parameters["@PageSize"].Value = pageSize;
+            cmd.Parameters["@PageNumber"].Value = pageNumber;
+            cmd.Parameters["@Search"].Value = search == null ? "" : search;
+
+            SqlDataReader rdr = cmd.ExecuteReader();
+
+            while (rdr.Read())
+            {
+                Employee emp = new Employee();
+                emp.EmployeeId = Convert.ToInt32(rdr["EmployeeId"]);
+                emp.FirstName = rdr["FirstName"].ToString();
+                emp.LastName = rdr["LastName"].ToString();
+                emp.Salary = Convert.ToDecimal(rdr["Salary"]);
+                emp.DepartmentId = rdr["DepartmentId"].ToString() == "" ? 0 : Convert.ToInt32(rdr["DepartmentId"]);
+                emp.DepartmentName = rdr["DepartmentName"].ToString();
+                employees.Add(emp);
+            }
+
+            return employees;
+        }
+
     }
 }
