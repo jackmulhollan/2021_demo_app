@@ -152,6 +152,13 @@
         html = html + "</tbody>" +
             "</table>";
 
+        html = html + "<div class='row'>" +
+            "<div class='col col-12'>" +
+            "<p id='pEmployeeSearchMessage'>Employee 1 through 5 of 9</p>" +
+            "</div>" +
+            "</div>";
+
+
         //Inject the new table into the DOM.
         dynamic = document.getElementById("dynamic");
         dynamic.innerHTML = html;
@@ -600,7 +607,7 @@
 
     //Search
     function handleSearch() {
-        var pageSize = 20;
+        var pageSize = 5;
         var pageNumber = 1;
         var search = textSearch.value;
 
